@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>changed</key>
+	<dict>
+		<key>command</key>
+		<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
+
+LINT=`/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc "$TM_BUNDLE_SUPPORT/lib/jsc_jslint.js" -- "$(cat $TM_FILEPATH)" | sed -e's/at line \([0-9]\{1,\}\) character \([0-9]\{1,\}\)/&lt;a href="txmt:\/\/open?line=\1\&amp;column=\2"&gt;at line \1 character \2&lt;\/a&gt;/g'`
+
+html_header "Validate Javascript"
+cat&lt;&lt;HTML
+&lt;pre&gt;
+$LINT
+&lt;/pre&gt;
+HTML
+html_footer</string>
+	</dict>
+	<key>deleted</key>
+	<array/>
+	<key>isDelta</key>
+	<true/>
+	<key>uuid</key>
+	<string>1798306B-F9D7-4D71-9B30-5D80A7125514</string>
+</dict>
+</plist>
