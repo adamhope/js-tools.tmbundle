@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>changed</key>
-	<dict/>
+	<dict>
+		<key>name</key>
+		<string>JS Tools</string>
+	</dict>
 	<key>deleted</key>
 	<array/>
 	<key>isDelta</key>
