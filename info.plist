@@ -6,6 +6,11 @@
 	<dict>
 		<key>name</key>
 		<string>JS Tools</string>
+		<key>ordering</key>
+		<array>
+			<string>1798306B-F9D7-4D71-9B30-5D80A7125514</string>
+			<string>9505C865-9905-4A74-A4E7-4BB0FBA56675</string>
+		</array>
 	</dict>
 	<key>deleted</key>
 	<array/>

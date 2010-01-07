@@ -5,19 +5,14 @@
 	<key>changed</key>
 	<dict>
 		<key>command</key>
-		<string># Download the latest version of JS Lint from http://www.jslint.com/fulljslint.js
-
-. "$TM_SUPPORT_PATH/lib/webpreview.sh"
-
-LINT=`/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc "$TM_BUNDLE_SUPPORT/lib/jsc_jslint.js" -- "$(cat $TM_FILEPATH)" | sed -e's/at line \([0-9]\{1,\}\) character \([0-9]\{1,\}\)/&lt;a href="txmt:\/\/open?line=\1\&amp;column=\2"&gt;at line \1 character \2&lt;\/a&gt;/g'`
-
+		<string>. "$TM_SUPPORT_PATH/lib/webpreview.sh"
 html_header "Validate Javascript"
-cat&lt;&lt;HTML
-&lt;pre&gt;
-$LINT
-&lt;/pre&gt;
-HTML
+"${TM_RUBY:-ruby}" "$TM_BUNDLE_SUPPORT/bin/jsclint.rb"
 html_footer</string>
+		<key>fallbackInput</key>
+		<string>document</string>
+		<key>input</key>
+		<string>document</string>
 		<key>keyEquivalent</key>
 		<string>^V</string>
 		<key>name</key>
