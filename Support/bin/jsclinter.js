@@ -7,8 +7,7 @@
 Copyright (c) 2002 Douglas Crockford  (www.JSLint.com) Rhino Edition
 */
 
-/*extern JSLINT, JSLINT_PREFS */
-/*global print, quit, readFile, require, SC, escape */
+/*global print, quit, readFile, require, JSLINT_PREFS, escape, JSLINT */
 
 (function(a) {
   if (!a[0]) {
