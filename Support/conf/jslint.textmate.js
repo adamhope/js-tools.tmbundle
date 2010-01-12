@@ -4,7 +4,7 @@ var JSLINT_PREFS = {
   bitwise   : false, // if bitwise operators should not be allowed
   browser   : true,  // if the standard browser globals should be predefined
   cap       : false, // if upper case HTML should be allowed
-  debug     : false,  // if debugger statements should be allowed
+  debug     : false, // if debugger statements should be allowed
   eqeqeq    : false, // if === should be required
   evil      : false, // if eval should be allowed
   forin     : true,  // if for in statements must filter
@@ -12,9 +12,10 @@ var JSLINT_PREFS = {
   laxbreak  : true,  // if line breaks should not be checked
   nomen     : false, // if names should be checked
   on        : false, // if HTML event handlers should be allowed
+  onevar    : false, // if only one var statement per function should be allowed
   passfail  : false, // if the scan should stop on first error
   plusplus  : false, // if increment/decrement should not be allowed
-  regexp    : false,  // if the . should not be allowed in regexp literals
+  regexp    : false, // if the . should not be allowed in regexp literals
   rhino     : false, // if the Rhino environment globals should be predefined
   undef     : true,  // if variables should be declared before used
   safe      : false, // if use of some browser features should be restricted
