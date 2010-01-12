@@ -41,7 +41,7 @@ Copyright (c) 2002 Douglas Crockford  (www.JSLint.com) Rhino Edition
 
   } else {
     if (!quick) {
-      print("jslint: No problems found in " + a[0]);
+      print("<pre>" + JSLINT.report() + "</pre>");
     }
   }
 })(arguments);
