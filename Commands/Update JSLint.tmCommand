@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>if curl -f -s -o "$TM_BUNDLE_SUPPORT/lib/fulljslint.js" http://www.jslint.com/fulljslint.js; then
+	echo "Updated"
+else
+	echo "Update failed"
+fi
+echo $TM_BUNDLE_SUPPORT
+#echo curl -fs -o $TM_SUPPORT_PATH/lib/fulljslint.js http://www.jslint.com/fulljslint.js</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>@j</string>
+	<key>name</key>
+	<string>Update JSLint</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
+	<key>uuid</key>
+	<string>81BD4A79-5620-42B3-B120-A2B29DCCC836</string>
+</dict>
+</plist>
