@@ -10,7 +10,7 @@ html_header "Validate Javascript"
 "${TM_RUBY:-ruby}" "$TM_BUNDLE_SUPPORT/bin/jsclint.rb"
 html_footer</string>
 	<key>input</key>
-	<string>document</string>
+	<string>selection</string>
 	<key>keyEquivalent</key>
 	<string>^V</string>
 	<key>name</key>
