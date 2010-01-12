@@ -9,13 +9,9 @@
 	echo "Updated"
 else
 	echo "Update failed"
-fi
-echo $TM_BUNDLE_SUPPORT
-#echo curl -fs -o $TM_SUPPORT_PATH/lib/fulljslint.js http://www.jslint.com/fulljslint.js</string>
+fi</string>
 	<key>input</key>
 	<string>selection</string>
-	<key>keyEquivalent</key>
-	<string>@j</string>
 	<key>name</key>
 	<string>Update JSLint</string>
 	<key>output</key>
