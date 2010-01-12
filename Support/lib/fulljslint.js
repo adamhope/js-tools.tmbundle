@@ -1,5 +1,5 @@
 // jslint.js
-// 2010-01-04
+// 2010-01-10
 
 /*
 Copyright (c) 2002 Douglas Crockford  (www.JSLint.com)
@@ -1122,8 +1122,8 @@ var JSLINT = (function () {
             i = t.id;
             if (i !== '(endline)') {
                 prereg = i &&
-                        (('(,=:[!&|?{};'.indexOf(i.charAt(i.length - 1)) >= 0) ||
-                        i === 'return');
+                    (('(,=:[!&|?{};'.indexOf(i.charAt(i.length - 1)) >= 0) ||
+                    i === 'return');
             }
             return t;
         }
@@ -1469,6 +1469,10 @@ var JSLINT = (function () {
                             break;
     //      /
                         case '/':
+                            if (token.id === '/=') {
+                                errorAt(
+"A regular expression literal can be confused with '/='.", line, from);
+                            }
                             if (prereg) {
                                 depth = 0;
                                 captures = 0;
@@ -1497,6 +1501,10 @@ var JSLINT = (function () {
                                         }
                                         character += l;
                                         s = s.substr(l);
+                                        q = s.charAt(0);
+                                        if (q === '/' || q === '*') {
+                                            errorAt("Confusing regular expression.", line, from);
+                                        }
                                         return it('(regexp)', c);
                                     case '\\':
                                         c = s.charAt(l);
