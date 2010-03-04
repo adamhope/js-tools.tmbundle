@@ -1,5 +1,5 @@
 // jslint.js
-// 2010-01-10
+// 2010-03-02
 
 /*
 Copyright (c) 2002 Douglas Crockford  (www.JSLint.com)
@@ -2209,7 +2209,8 @@ loop:   for (;;) {
 
     function reservevar(s, v) {
         return reserve(s, function () {
-            if (this.id === 'this' || this.id === 'arguments') {
+            if (this.id === 'this' || this.id === 'arguments' || 
+                    this.id === 'eval') {
                 if (strict_mode && funct['(global)']) {
                     warning("Strict violation.", this);
                 } else if (option.safe) {
@@ -2458,9 +2459,6 @@ loop:   for (;;) {
         if (!noindent) {
             indentation();
         }
-        if (nexttoken.id === 'new') {
-            warning("'new' should not be used as a statement.");
-        }
         r = parse(0, true);
 
 // Look for the final semicolon.
@@ -2470,6 +2468,8 @@ loop:   for (;;) {
                 warning(
 "Expected an assignment or function call and instead saw an expression.",
                         token);
+            } else if (r.id === '(' && r.left.id === 'new') {
+                warning("Do not use 'new' for side effects.");
             }
             if (nexttoken.id !== ';') {
                 warningAt("Missing semicolon.", token.line,
@@ -2673,9 +2673,10 @@ loop:   for (;;) {
     }
 
     function cssColor() {
-        var i, number;
+        var i, number, value;
         if (nexttoken.identifier) {
-            if (nexttoken.value === 'rgb') {
+            value = nexttoken.value;
+            if (value === 'rgb' || value === 'rgba') {
                 advance();
                 advance('(');
                 for (i = 0; i < 3; i += 1) {
@@ -2701,6 +2702,19 @@ loop:   for (;;) {
                                     token, number);
                             }
                         }
+                    }
+                }
+                if (value === 'rgba') {
+                    advance(',');
+                    number = +nexttoken.value;
+                    if (nexttoken.type !== '(number)' || number < 0 || number > 1) {
+                        warning("Expected a number between 0 and 1 and instead saw '{a}'",
+                            nexttoken, number);
+                    }
+                    advance();
+                    if (nexttoken.id === '%') {
+                        warning("Unexpected '%'.");
+                        advance('%');
                     }
                 }
                 advance(')');
@@ -3496,7 +3510,9 @@ loop:   for (;;) {
             if (ids[u] === true) {
                 warning("Duplicate id='{a}'.", nexttoken, v);
             }
-            if (option.adsafe) {
+            if (!/^[A-Za-z][A-Za-z0-9._:\-]*$/.test(v)) {
+                warning("Bad id: '{a}'.", nexttoken, v);
+            } else if (option.adsafe) {
                 if (adsafe_id) {
                     if (v.slice(0, adsafe_id.length) !== adsafe_id) {
                         warning("ADsafe violation: An id must have a '{a}' prefix",
@@ -3510,7 +3526,7 @@ loop:   for (;;) {
                         warning("ADSAFE violation: bad id.");
                     }
                 }
-            }
+            }  
             x = v.search(dx);
             if (x >= 0) {
                 warning("Unexpected character '{a}' in {b}.", token, v.charAt(x), a);
@@ -4526,6 +4542,9 @@ loop:   for (;;) {
                 nonadjacent(token, nexttoken);
                 advance('=');
                 nonadjacent(token, nexttoken);
+                if (nexttoken.id === 'undefined') {
+                    warning("It is not necessary to initialize '{a}' to 'undefined'.", token, id);
+                }
                 if (peek(0).id === '=' && nexttoken.identifier) {
                     error("Variable {a} was not declared correctly.",
                             nexttoken, nexttoken.value);
@@ -4618,8 +4637,8 @@ loop:   for (;;) {
             nonadjacent(token, nexttoken);
         }
         doFunction(i);
-        if (funct['(loopage)'] && nexttoken.id !== '(') {
-            warning("Be careful when making functions within a loop. Consider putting the function in a closure.");
+        if (funct['(loopage)']) {
+            warning("Don't make functions within a loop.");
         }
         return this;
     });
@@ -4955,6 +4974,8 @@ loop:   for (;;) {
                 this.first = nexttoken;
                 advance();
             }
+        } else if (!funct['(loopage)']) {
+            warning("Unexpected '{a}'.", nexttoken, this.value);
         }
         reachable('continue');
         return this;
@@ -5473,7 +5494,7 @@ loop:   for (;;) {
     };
     itself.jslint = itself;
 
-    itself.edition = '2010-01-04';
+    itself.edition = '2010-03-02';
 
     return itself;
 
