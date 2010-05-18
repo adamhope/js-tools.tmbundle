@@ -20,6 +20,8 @@ File.delete(path)
 
 # NOTE add TextMate links to report
 report = report.gsub(/at line ([0-9]{1,}) character ([0-9]{1,})/, "<a href=\"txmt:\/\/open?line=\\1\&column=\2\">at line \\1 character \\2<\/a>")
+# link to unused variables
+report = report.gsub(/<code><u>([^\s<]+)<\/u><\/code>&nbsp;<i>(\d+)<\/i>\s*<code>"([^"]+)"<\/code>,?/, "<a href=\"txmt:\/\/open?line=\\2\" style=\"display:block\">\\1 (\\3 - \\2)<\/a>" )
 
 # NOTE Fix the file path in the report
 report = report.gsub(/#{path}/, "#{FILEPATH}")
