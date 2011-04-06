@@ -3,16 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>/*jslint white: true, onevar: true, undef: true, newcap: true, nomen: true, regexp: true, plusplus: true, bitwise: true, maxerr: 50, indent: 4 */
-
+	<string>/*global
+    $1
+*/
 </string>
 	<key>name</key>
-	<string>jslint</string>
+	<string>global</string>
 	<key>scope</key>
 	<string>source.js</string>
 	<key>tabTrigger</key>
-	<string>jslint</string>
+	<string>global</string>
 	<key>uuid</key>
-	<string>DD0B06DA-C149-4837-BA9D-4EC498DD74C4</string>
+	<string>6C9D288A-60BA-4F8E-BF28-8F6A55B37180</string>
 </dict>
 </plist>
