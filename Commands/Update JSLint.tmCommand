@@ -5,7 +5,7 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>if curl -f -s -o "$TM_BUNDLE_SUPPORT/lib/fulljslint.js" http://www.jslint.com/fulljslint.js; then
+	<string>if curl -f -s -o "$TM_BUNDLE_SUPPORT/lib/fulljslint.js" http://www.jslint.com/jslint.js; then
 	echo "Updated"
 else
 	echo "Update failed"
